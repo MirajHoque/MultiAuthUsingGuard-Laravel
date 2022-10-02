@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -47,5 +48,17 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function(){
         Route::get('home', [AdminController::class, 'home'])->name('home');
         Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+
+        //user
+        Route::get('users', [AdminController::class, 'index'])->name('user.index');
+        Route::get('users/create', [AdminController::class, 'create'])->name('user.create');
+        Route::post('users/store', [AdminController::class, 'store'])->name('user.store');
+        Route::get('users/edit', [AdminController::class, 'edit'])->name('user.edit');
+        Route::get('users/update', [AdminController::class, 'update'])->name('user.update');
+
+        //Role
+        Route::resource('role', RoleController::class);
+        Route::get('role-delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
+
     });
 });
