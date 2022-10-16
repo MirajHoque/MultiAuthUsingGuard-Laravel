@@ -102,7 +102,7 @@ class AdminController extends Controller
        
         $userPermissions = $user->permissions;
 
-        return view('user.edit', compact('user', 'roles', 'userRoles', 'rolePermissions', 'userPermissions'));
+        return view('admin.user.edit', compact('user', 'roles', 'userRoles', 'rolePermissions', 'userPermissions'));
     }
 
     public function update(Request $request, $id)

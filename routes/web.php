@@ -53,8 +53,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('users', [AdminController::class, 'index'])->name('user.index');
         Route::get('users/create', [AdminController::class, 'create'])->name('user.create');
         Route::post('users/store', [AdminController::class, 'store'])->name('user.store');
-        Route::get('users/edit', [AdminController::class, 'edit'])->name('user.edit');
-        Route::get('users/update', [AdminController::class, 'update'])->name('user.update');
+        Route::get('users/edit/{id}', [AdminController::class, 'edit'])->name('user.edit');
+        Route::put('users/update/{id}', [AdminController::class, 'update'])->name('user.update');
 
         //Role
         Route::resource('role', RoleController::class);

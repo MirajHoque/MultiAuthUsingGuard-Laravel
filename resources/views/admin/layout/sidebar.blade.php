@@ -35,15 +35,13 @@
                                 <li>
                                     <a href="{{ route('admin.user.index') }}" key="t-products">Manage User</a>
                                 </li>
-                               
-                           
                                 
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="fa-solid fa-gears"></i>
+                            <i class="fa-solid fa-blog"></i>
                             <span key="t-bank">Post</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">

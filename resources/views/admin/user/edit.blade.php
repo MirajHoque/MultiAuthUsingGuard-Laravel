@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('admin.layout.master')
 
 @section('content')
     <div class="row">
@@ -20,12 +20,12 @@
         <div class="col-lg-12 ">
             <div class="py-1">
                 <div class="button-items d-flex justify-content-end">
-                    <a href="{{ route('user.index') }}" type="button"
+                    <a href="{{ route('admin.user.index') }}" type="button"
                         class="btn btn-success waves-effect waves-light">List</a>
                 </div>
             </div>
             <div class="card">
-                <form action="{{ route('user.update', $user->id) }}" method="POST" autocomplete="off"
+                <form action="{{ route('admin.user.update', $user->id) }}" method="POST" autocomplete="off"
                     enctype="multipart/form-data" files="true">
                     @csrf
                     @method('put')
@@ -124,7 +124,7 @@
 
                 $.ajax({
                     type: "get",
-                    url: "{{ route('user.create') }}",
+                    url: "{{ route('admin.user.create') }}",
                     data: { roleId:roleId,  roleSlug:roleSlug},
                     dataType: "json",
                     success: function (response) {
