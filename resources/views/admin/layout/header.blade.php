@@ -77,7 +77,7 @@
                                {{-- class="bx bx-wrench font-size-16 align-middle mr-1"></i> <span
                                key="t-settings">Settings</span></a> --}}
                        <div class="dropdown-divider"></div>
-                       <a class="dropdown-item text-danger" href="">
+                       <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}">
                         <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
                          <span key="t-logout">Logout</span>
                         </a>

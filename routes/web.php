@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -59,6 +60,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
         //Role
         Route::resource('role', RoleController::class);
         Route::get('role-delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
+
+        //Post
+        Route::resource('/post', PostController::class)->middleware('can:isAdmin');
+        Route::get('post-delete/{id}', [PostController::class, 'delete'])->name('post.delete');
 
     });
 });
