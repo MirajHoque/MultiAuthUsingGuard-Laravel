@@ -62,7 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('role-delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
 
         //Post
-        Route::resource('/post', PostController::class)->middleware('can:isAdmin');
+        Route::resource('/post', PostController::class)->middleware('can:admin-only');
         Route::get('post-delete/{id}', [PostController::class, 'delete'])->name('post.delete');
 
     });
