@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -77,6 +78,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        if(Gate::denies('admin-only', $post)){
+            abort(401, 'Unauthenticated');
+        }
         return view('admin.post.edit', compact('post'));
     }
 
@@ -115,8 +119,13 @@ class PostController extends Controller
 
     //delete post
     public function delete($id)
-    {
+    {  
+        if(Gate::denies('admin-only')){
+            abort(401, 'Unauthenticated');
+        }
+
         Post::findOrFail($id)->delete();
+        
         return redirect()->route('admin.post.index');
     }
 }

@@ -34,8 +34,11 @@
                                     <th>#</th>
                                     <th>Id</th>
                                     <th>Title</th>
-                                    <th>Post By</th>     
+                                    <th>Post By</th>
+                                    @can('admin-only')
                                     <th>Action</th>
+                                    @endcan    
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,15 +47,16 @@
                                         <td>{{ $element->id }}</td>
                                         <td>{{ $element->title }}</td>
                                         <td>{{ $element->admin->name }}</td>
-                                        <td>
-                                            <div class="btn-group btn-group-sm mt-2" role="group"
+                                            @can('admin-only')
+                                            <td>
+                                                <div class="btn-group btn-group-sm mt-2" role="group"
                                                 aria-label="Basic example">
-                                               
+                                            
                                                     <a href="{{ route('admin.post.edit', $element->id) }}"
                                                         class="btn btn-warning btn-sm" title="Edit">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                               
+                                            
                                                 <button onclick="" class="btn btn-info btn-sm"
                                                     title="Show">
                                                     <i class="fa fa-eye"></i>
@@ -62,8 +66,9 @@
                                                         class="btn btn-danger btn-sm delete" title="Detete">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                            </div>
-                                        </td>
+                                                </div>
+                                            </td>
+                                            @endcan
                                     </tr>
                                  @endforeach
                             </tbody>
