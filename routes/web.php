@@ -51,18 +51,20 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 
         //user
-        Route::get('users', [AdminController::class, 'index'])->name('user.index');
-        Route::get('users/create', [AdminController::class, 'create'])->name('user.create');
-        Route::post('users/store', [AdminController::class, 'store'])->name('user.store');
-        Route::get('users/edit/{id}', [AdminController::class, 'edit'])->name('user.edit');
-        Route::put('users/update/{id}', [AdminController::class, 'update'])->name('user.update');
-
+        Route::group(['prefix' => 'users', 'middleware' => ['can:admin-only']], function(){
+            Route::get('/', [AdminController::class, 'index'])->name('user.index');
+            Route::get('/create', [AdminController::class, 'create'])->name('user.create');
+            Route::post('/store', [AdminController::class, 'store'])->name('user.store');
+            Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('user.edit');
+            Route::put('/update/{id}', [AdminController::class, 'update'])->name('user.update');
+        });
+        
         //Role
         Route::resource('role', RoleController::class);
         Route::get('role-delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
 
         //Post
-        Route::resource('/post', PostController::class)->middleware('can:admin-only');
+        Route::resource('/post', PostController::class);
         Route::get('post-delete/{id}', [PostController::class, 'delete'])->name('post.delete');
 
     });
